@@ -1,38 +1,42 @@
-# Pet Hotel CMS - MVP
+# 🐶 Pet Hotel CMS - MVP
 
-This is a simple Web API project built for my ASP.NET Core Passion Project course.
+This is a Web API project developed for the ASP.NET Core Passion Project course.
 
-## 🐾 Project Description
+## 📖 Project Description
 
-Pet Hotel CMS is a system to manage pet hotel customers and their pets. This MVP version allows basic Create, Read, Update, and Delete (CRUD) operations for pet owners and their animals through API endpoints.
+**Pet Hotel CMS** is a lightweight content management system for a pet boarding facility. It allows staff to manage **owners**, their **pets**, and **bookings** (e.g. for a pet’s stay) using RESTful API endpoints.  
+This MVP focuses on clean CRUD functionality and relationship management between entities.
 
 ## ✅ Features (MVP Scope)
 
-- ASP.NET Core Web API (no frontend)
+- ASP.NET Core **Web API** (no frontend)
 - Entity Framework Core with **Code-First Migrations**
-- SQLite database
-- CRUD operations using **LINQ**
-- **DTO**s for clean data transfer
-- Swagger API documentation
+- SQLite as database
+- CRUD operations for:
+  - Owners
+  - Pets
+  - Bookings
+- **DTOs** for secure and clean data transfer
+- Owner–Pet relationship with `/owners/{id}/with-pets` endpoint
+- Swagger documentation and testing
 
 ## 📁 Entities
 
-- `Owner`: A person who owns one or more animals.
-- `Animal`: A pet belonging to an owner (e.g., dog, cat).
+- `Owner`: A person who owns pets. Includes full name, email, phone number, and address.
+- `Pet`: An animal belonging to an owner. Includes name, type, breed, age.
+- `Booking`: A record for a pet’s stay at the hotel. Includes start and end date, and notes.
 
 ## 🧩 Technologies Used
 
-- ASP.NET Core (.NET 8)
+- ASP.NET Core 8
 - Entity Framework Core
 - SQLite
-- Swagger / Swashbuckle
-- Visual Studio Code / CLI
+- Swagger (Swashbuckle)
+- Visual Studio Code / .NET CLI
 
-## 🧪 How to Run
+## 🧪 How to Run Locally
 
 ```bash
 dotnet restore
 dotnet ef database update
 dotnet run
-# PetHotelCMS
-# PetHotelCMS

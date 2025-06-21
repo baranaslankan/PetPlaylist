@@ -1,22 +1,11 @@
-using System.ComponentModel.DataAnnotations;
-
-namespace PetHotelCMS.Models
+namespace PetHotelCMS.DTOs
 {
-    public class Booking
+    public class BookingDTO
     {
         public int Id { get; set; }
-
-        [Required]
         public int PetId { get; set; }
-        public Pet? Pet { get; set; }
-
-        [Required]
         public DateTime StartDate { get; set; }
-
-        [Required]
         public DateTime EndDate { get; set; }
-
-        [MaxLength(500)]
         public string? Notes { get; set; }
     }
 }

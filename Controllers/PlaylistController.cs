@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PetPlaylist.Data;
 using PetPlaylist.Models;
+using PetPlaylist.DTOs;
 using Microsoft.EntityFrameworkCore;
 
 namespace PetPlaylist.Controllers
@@ -138,6 +139,128 @@ namespace PetPlaylist.Controllers
             if (playlist == null) return NotFound();
 
             _context.Playlists.Remove(playlist);
+            _context.SaveChanges();
+
+            return NoContent();
+        }
+
+        /// <summary>
+        /// Gets all playlists recommended for a specific behavior.
+        /// </summary>
+        /// <param name="behaviorId">Behavior ID</param>
+        /// <returns>200 OK - List of PlaylistDto</returns>
+        /// <example>
+        /// GET: api/Playlist/ForBehavior/1 -> [{PlaylistDto}, ...]
+        /// </example>
+        [HttpGet("ForBehavior/{behaviorId}")]
+        public IActionResult GetPlaylistsForBehavior(int behaviorId)
+        {
+            var playlists = _context.BehaviorPlaylists
+                .Where(bp => bp.BehaviorId == behaviorId)
+                .Include(bp => bp.Playlist)
+                    .ThenInclude(p => p.PlaylistSongs)
+                .Select(bp => new PlaylistDto(
+                    bp.Playlist.PlaylistId,
+                    bp.Playlist.PlaylistName,
+                    bp.Playlist.PlaylistSongs.Select(ps => ps.SongId).ToList()
+                ))
+                .ToList();
+
+            return Ok(playlists);
+        }
+
+        /// <summary>
+        /// Gets all recommended playlists for a specific pet based on their behaviors.
+        /// </summary>
+        /// <param name="petId">Pet ID</param>
+        /// <returns>200 OK - List of PlaylistDto</returns>
+        /// <example>
+        /// GET: api/Playlist/ForPet/1 -> [{PlaylistDto}, ...]
+        /// </example>
+        [HttpGet("ForPet/{petId}")]
+        public IActionResult GetRecommendedPlaylistsForPet(int petId)
+        {
+            // Get pet's behavior IDs
+            var petBehaviorIds = _context.PetBehaviors
+                .Where(pb => pb.PetId == petId)
+                .Select(pb => pb.BehaviorId)
+                .ToList();
+
+            if (!petBehaviorIds.Any())
+                return Ok(new List<PlaylistDto>()); // No behaviors recorded for this pet
+
+            // Get playlists recommended for those behaviors
+            var playlists = _context.BehaviorPlaylists
+                .Where(bp => petBehaviorIds.Contains(bp.BehaviorId))
+                .Include(bp => bp.Playlist)
+                    .ThenInclude(p => p.PlaylistSongs)
+                .Select(bp => bp.Playlist)
+                .Distinct()
+                .Select(p => new PlaylistDto(
+                    p.PlaylistId,
+                    p.PlaylistName,
+                    p.PlaylistSongs.Select(ps => ps.SongId).ToList()
+                ))
+                .ToList();
+
+            return Ok(playlists);
+        }
+
+        /// <summary>
+        /// Associates a playlist with a behavior for recommendations.
+        /// </summary>
+        /// <param name="playlistId">Playlist ID</param>
+        /// <param name="behaviorId">Behavior ID</param>
+        /// <returns>201 Created</returns>
+        /// <example>
+        /// POST: api/Playlist/1/AssociateBehavior/2
+        /// </example>
+        [HttpPost("{playlistId}/AssociateBehavior/{behaviorId}")]
+        public IActionResult AssociatePlaylistWithBehavior(int playlistId, int behaviorId)
+        {
+            // Check if playlist and behavior exist
+            if (!_context.Playlists.Any(p => p.PlaylistId == playlistId))
+                return NotFound("Playlist not found");
+            
+            if (!_context.Behaviors.Any(b => b.BehaviorId == behaviorId))
+                return NotFound("Behavior not found");
+
+            // Check if association already exists
+            if (_context.BehaviorPlaylists.Any(bp => bp.PlaylistId == playlistId && bp.BehaviorId == behaviorId))
+                return Conflict("Association already exists");
+
+            var behaviorPlaylist = new BehaviorPlaylist
+            {
+                PlaylistId = playlistId,
+                BehaviorId = behaviorId,
+                CreatedDate = DateTime.UtcNow
+            };
+
+            _context.BehaviorPlaylists.Add(behaviorPlaylist);
+            _context.SaveChanges();
+
+            return Created($"api/Playlist/{playlistId}/AssociateBehavior/{behaviorId}", behaviorPlaylist);
+        }
+
+        /// <summary>
+        /// Removes association between a playlist and a behavior.
+        /// </summary>
+        /// <param name="playlistId">Playlist ID</param>
+        /// <param name="behaviorId">Behavior ID</param>
+        /// <returns>204 No Content</returns>
+        /// <example>
+        /// DELETE: api/Playlist/1/AssociateBehavior/2
+        /// </example>
+        [HttpDelete("{playlistId}/AssociateBehavior/{behaviorId}")]
+        public IActionResult RemovePlaylistBehaviorAssociation(int playlistId, int behaviorId)
+        {
+            var association = _context.BehaviorPlaylists
+                .FirstOrDefault(bp => bp.PlaylistId == playlistId && bp.BehaviorId == behaviorId);
+
+            if (association == null)
+                return NotFound("Association not found");
+
+            _context.BehaviorPlaylists.Remove(association);
             _context.SaveChanges();
 
             return NoContent();

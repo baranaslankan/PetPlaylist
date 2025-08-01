@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PetPlaylist.Data;
 
@@ -10,9 +11,11 @@ using PetPlaylist.Data;
 namespace PetPlaylist.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250801230237_AddBehaviorPlaylistSystem")]
+    partial class AddBehaviorPlaylistSystem
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.5");
@@ -42,6 +45,10 @@ namespace PetPlaylist.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -60,6 +67,16 @@ namespace PetPlaylist.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("EffectivenessRating")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("RecommendedBy")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UsageNotes")
                         .HasColumnType("TEXT");
 
                     b.HasKey("BehaviorId", "PlaylistId");
@@ -161,6 +178,19 @@ namespace PetPlaylist.Migrations
                     b.Property<int>("BehaviorId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("IntensityLevel")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Notes")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ObservedBy")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("ObservedDate")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("PetId", "BehaviorId");
 
                     b.HasIndex("BehaviorId");
@@ -174,9 +204,22 @@ namespace PetPlaylist.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("PlaylistName")
                         .IsRequired()
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("TotalDurationSeconds")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("PlaylistId");
 

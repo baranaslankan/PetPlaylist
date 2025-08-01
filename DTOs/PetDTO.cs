@@ -9,4 +9,13 @@ namespace PetPlaylist.DTOs
         public int Age { get; set; }
         public int OwnerId { get; set; }
     }
+
+    public class CreatePetDTO
+    {
+        public string Name { get; set; } = "";
+        public string Type { get; set; } = "";
+        public string Breed { get; set; } = "";
+        public int Age { get; set; }
+        public int OwnerId { get; set; }
+    }
 }

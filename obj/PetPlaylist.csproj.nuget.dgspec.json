@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/justin/Desktop/humber/PetPlaylist/PetPlaylist.csproj": {}
+    "/Users/baranaslankan/Desktop/PetPlaylist/PetPlaylist.csproj": {}
   },
   "projects": {
-    "/Users/justin/Desktop/humber/PetPlaylist/PetPlaylist.csproj": {
+    "/Users/baranaslankan/Desktop/PetPlaylist/PetPlaylist.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/justin/Desktop/humber/PetPlaylist/PetPlaylist.csproj",
+        "projectUniqueName": "/Users/baranaslankan/Desktop/PetPlaylist/PetPlaylist.csproj",
         "projectName": "PetPlaylist",
-        "projectPath": "/Users/justin/Desktop/humber/PetPlaylist/PetPlaylist.csproj",
-        "packagesPath": "/Users/justin/.nuget/packages/",
-        "outputPath": "/Users/justin/Desktop/humber/PetPlaylist/obj/",
+        "projectPath": "/Users/baranaslankan/Desktop/PetPlaylist/PetPlaylist.csproj",
+        "packagesPath": "/Users/baranaslankan/.nuget/packages/",
+        "outputPath": "/Users/baranaslankan/Desktop/PetPlaylist/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/justin/.nuget/NuGet/NuGet.Config"
+          "/Users/baranaslankan/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -81,7 +81,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.412/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.405/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

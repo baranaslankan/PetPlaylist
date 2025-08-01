@@ -4,3 +4,158 @@ GET {{PetPlaylist_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
+
+# 🎵 SIMPLE PET PLAYLIST WORKFLOW 🐕
+
+# STEP 1: Create Artists
+POST {{PetPlaylist_HostAddress}}/api/Artist
+Content-Type: application/json
+
+{
+    "ArtistName": "Relaxing Pet Music"
+}
+
+###
+
+POST {{PetPlaylist_HostAddress}}/api/Artist
+Content-Type: application/json
+
+{
+    "ArtistName": "Energetic Animal Sounds"
+}
+
+###
+
+# STEP 2: Create Songs (you need to check what format your friend's SongController expects)
+# This is just an example - adjust based on your friend's SongController
+POST {{PetPlaylist_HostAddress}}/api/Song
+Content-Type: application/json
+
+{
+    "Title": "Calming Rain Sounds",
+    "DurationInSeconds": 300,
+    "ArtistId": 1
+}
+
+###
+
+POST {{PetPlaylist_HostAddress}}/api/Song
+Content-Type: application/json
+
+{
+    "Title": "Peaceful Nature",
+    "DurationInSeconds": 240,
+    "ArtistId": 1
+}
+
+###
+
+POST {{PetPlaylist_HostAddress}}/api/Song
+Content-Type: application/json
+
+{
+    "Title": "Happy Dog Park",
+    "DurationInSeconds": 180,
+    "ArtistId": 2
+}
+
+###
+
+# STEP 3: Create Playlists with Songs
+POST {{PetPlaylist_HostAddress}}/api/Playlist
+Content-Type: application/json
+
+{
+    "PlaylistId": 0,
+    "PlaylistName": "Anxiety Relief",
+    "SongIds": [1, 2]
+}
+
+###
+
+POST {{PetPlaylist_HostAddress}}/api/Playlist
+Content-Type: application/json
+
+{
+    "PlaylistId": 0,
+    "PlaylistName": "Energy Boost",
+    "SongIds": [3]
+}
+
+###
+
+# STEP 4: Create Behaviors
+POST {{PetPlaylist_HostAddress}}/api/Behaviors
+Content-Type: application/json
+
+{
+    "BehaviorName": "Anxious",
+    "Description": "Pet shows anxiety symptoms",
+    "Category": "Emotional"
+}
+
+###
+
+POST {{PetPlaylist_HostAddress}}/api/Behaviors
+Content-Type: application/json
+
+{
+    "BehaviorName": "Hyperactive",
+    "Description": "Pet is very energetic",
+    "Category": "Energy"
+}
+
+###
+
+# STEP 5: Link Playlists to Behaviors
+# Anxiety Relief playlist (ID 1) for Anxious behavior (ID 1)
+POST {{PetPlaylist_HostAddress}}/api/Playlist/1/AssociateBehavior/1?effectivenessRating=5&recommendedBy=Veterinarian
+
+###
+
+# Energy Boost playlist (ID 2) for Hyperactive behavior (ID 2) 
+POST {{PetPlaylist_HostAddress}}/api/Playlist/2/AssociateBehavior/2?effectivenessRating=4&recommendedBy=Owner
+
+###
+
+# STEP 6: Assign Behavior to Pet (assuming pet ID 1 exists)
+POST {{PetPlaylist_HostAddress}}/api/Behaviors/assign-to-pet
+Content-Type: application/json
+
+{
+    "PetId": 1,
+    "BehaviorId": 1,
+    "Notes": "Pet gets anxious during storms"
+}
+
+###
+
+# STEP 7: Get Pet's Behaviors
+GET {{PetPlaylist_HostAddress}}/api/Behaviors/pet/1
+Accept: application/json
+
+###
+
+# STEP 8: Get Recommended Playlists for Pet (based on assigned behaviors)
+GET {{PetPlaylist_HostAddress}}/api/Playlist/ForPet/1
+Accept: application/json
+
+###
+
+# BONUS: Get all playlists for a specific behavior
+GET {{PetPlaylist_HostAddress}}/api/Playlist/ForBehavior/1
+Accept: application/json
+
+###
+
+# View all behaviors
+GET {{PetPlaylist_HostAddress}}/api/Behaviors
+Accept: application/json
+
+###
+
+# View all playlists
+GET {{PetPlaylist_HostAddress}}/api/Playlist
+Accept: application/json
+
+###

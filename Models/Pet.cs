@@ -14,5 +14,8 @@ public class Pet
 
     [JsonIgnore]
     public Owner? Owner { get; set; }
+    
+    // Behavior relationships
+    public ICollection<PetBehavior> PetBehaviors { get; set; } = new List<PetBehavior>();
 
 }

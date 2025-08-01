@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace PetHotelCMS.Models
+namespace PetPlaylist.Models
 {
     public class Booking
     {

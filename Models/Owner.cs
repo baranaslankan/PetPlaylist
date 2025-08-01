@@ -1,4 +1,4 @@
-namespace PetHotelCMS.Models;
+namespace PetPlaylist.Models;
 
 public class Owner
 {

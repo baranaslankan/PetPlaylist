@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using PetHotelCMS.Data;
+using PetPlaylist.Data;
 
 #nullable disable
 
-namespace PetHotelCMS.Migrations
+namespace PetPlaylist.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20250621010254_AddPetAgeAndBreed")]

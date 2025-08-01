@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using PetHotelCMS.Data;
+using PetPlaylist.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

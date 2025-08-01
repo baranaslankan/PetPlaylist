@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace PetHotelCMS.Migrations
+namespace PetPlaylist.Migrations
 {
     /// <inheritdoc />
     public partial class AddPetAgeColumn : Migration

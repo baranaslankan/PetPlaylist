@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace PetHotelCMS.DTOs
+namespace PetPlaylist.DTOs
 {
     public class OwnerDTO
     {

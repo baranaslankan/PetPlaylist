@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace PetHotelCMS.Models;
+namespace PetPlaylist.Models;
 
 public class Pet
 {

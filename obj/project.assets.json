@@ -3662,11 +3662,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/baranaslankan/Desktop/PetHotelCMS/PetHotelCMS.csproj",
-      "projectName": "PetHotelCMS",
-      "projectPath": "/Users/baranaslankan/Desktop/PetHotelCMS/PetHotelCMS.csproj",
+      "projectUniqueName": "/Users/baranaslankan/Desktop/PetPlaylist/PetPlaylist.csproj",
+      "projectName": "PetPlaylist",
+      "projectPath": "/Users/baranaslankan/Desktop/PetPlaylist/PetPlaylist.csproj",
       "packagesPath": "/Users/baranaslankan/.nuget/packages/",
-      "outputPath": "/Users/baranaslankan/Desktop/PetHotelCMS/obj/",
+      "outputPath": "/Users/baranaslankan/Desktop/PetPlaylist/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/baranaslankan/.nuget/NuGet/NuGet.Config"

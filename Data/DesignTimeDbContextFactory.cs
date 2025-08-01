@@ -1,15 +1,15 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
-using PetHotelCMS.Models;
+using PetPlaylist.Models;
 
-namespace PetHotelCMS.Data;
+namespace PetPlaylist.Data;
 
 public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<ApplicationDbContext>
 {
     public ApplicationDbContext CreateDbContext(string[] args)
     {
         var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
-        optionsBuilder.UseSqlite("Data Source=PetHotelDb.sqlite");
+        optionsBuilder.UseSqlite("Data Source=PetPlaylistDb.sqlite");
 
         return new ApplicationDbContext(optionsBuilder.Options);
     }

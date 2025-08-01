@@ -1,6 +1,0 @@
-@PetHotelCMS_HostAddress = http://localhost:5187
-
-GET {{PetHotelCMS_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

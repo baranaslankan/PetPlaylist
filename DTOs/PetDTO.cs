@@ -1,4 +1,4 @@
-namespace PetHotelCMS.DTOs
+namespace PetPlaylist.DTOs
 {
     public class PetDTO
     {

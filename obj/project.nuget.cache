@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "HaSkPY/Hh7A=",
+  "dgSpecHash": "NxLCkpB7eus=",
   "success": true,
-  "projectFilePath": "/Users/baranaslankan/Desktop/PetHotelCMS/PetHotelCMS.csproj",
+  "projectFilePath": "/Users/baranaslankan/Desktop/PetPlaylist/PetPlaylist.csproj",
   "expectedPackageFiles": [
     "/Users/baranaslankan/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/Users/baranaslankan/.nuget/packages/microsoft.aspnetcore.openapi/8.0.12/microsoft.aspnetcore.openapi.8.0.12.nupkg.sha512",

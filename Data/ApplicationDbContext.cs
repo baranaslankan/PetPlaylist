@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using PetHotelCMS.Models;
+using PetPlaylist.Models;
 
-namespace PetHotelCMS.Data;
+namespace PetPlaylist.Data;
 
 public class ApplicationDbContext : DbContext
 {

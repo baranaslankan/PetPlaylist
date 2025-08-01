@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using PetHotelCMS.Data;
-using PetHotelCMS.DTOs;
-using PetHotelCMS.Models;
+using PetPlaylist.Data;
+using PetPlaylist.DTOs;
+using PetPlaylist.Models;
 
-namespace PetHotelCMS.Controllers
+namespace PetPlaylist.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

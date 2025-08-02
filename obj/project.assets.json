@@ -3657,19 +3657,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/baranaslankan/.nuget/packages/": {}
+    "/Users/justin/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/baranaslankan/Desktop/PetPlaylist/PetPlaylist.csproj",
+      "projectUniqueName": "/Users/justin/Desktop/humber/PetPlaylist/PetPlaylist.csproj",
       "projectName": "PetPlaylist",
-      "projectPath": "/Users/baranaslankan/Desktop/PetPlaylist/PetPlaylist.csproj",
-      "packagesPath": "/Users/baranaslankan/.nuget/packages/",
-      "outputPath": "/Users/baranaslankan/Desktop/PetPlaylist/obj/",
+      "projectPath": "/Users/justin/Desktop/humber/PetPlaylist/PetPlaylist.csproj",
+      "packagesPath": "/Users/justin/.nuget/packages/",
+      "outputPath": "/Users/justin/Desktop/humber/PetPlaylist/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/baranaslankan/.nuget/NuGet/NuGet.Config"
+        "/Users/justin/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -3736,7 +3736,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.405/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.412/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

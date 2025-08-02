@@ -13,7 +13,6 @@ namespace PetPlaylist.Controllers
         private readonly ApplicationDbContext _context;
         public ArtistController(ApplicationDbContext context) => _context = context;
 
-        // Inline DTO for Artist
         public record ArtistDto(int ArtistId, string ArtistName);
 
         /// <summary>

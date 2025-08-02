@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PetPlaylist")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b809f0195336071c45fa0479428dca21aacbeafa")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+efee3a79d331d5b638b37eea680b182f2336fa42")]
 [assembly: System.Reflection.AssemblyProductAttribute("PetPlaylist")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PetPlaylist")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

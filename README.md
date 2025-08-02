@@ -1,4 +1,4 @@
-# 🎵 **PetPlaylist** 📁 Key Entities
+# 🎵 **PetPlaylist** 
 
 - `Owner`: Pet owner information (name, email, phone, address)
 - `Pet`: Pet details (name, type, breed, age) with behavior tracking
@@ -34,12 +34,6 @@ This MVP focuses on clean CRUD functionality and relationship management between
 - **Behavior-based playlist recommendations**
 - Many-to-many relationships between pets-behaviors and behaviors-playlists
 - **DTOs** for secure and clean data transfer
-
-## 📁 Entities
-
-- `Owner`: A person who owns pets. Includes full name, email, phone number, and address.
-- `Pet`: An animal belonging to an owner. Includes name, type, breed, age.
-- `Booking`: A record for a pet’s stay at the hotel. Includes start and end date, and notes.
 
 ## 🧩 Technologies Used
 

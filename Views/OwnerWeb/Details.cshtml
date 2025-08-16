@@ -1,0 +1,9 @@
+@model PetPlaylist.Models.Owner
+
+<h2>@Model.FullName's Pets</h2>
+<ul>
+@foreach (var pet in Model.Pets ?? new List<PetPlaylist.Models.Pet>())
+{
+    <li>@pet.Name (@pet.Type, @pet.Breed, Age: @pet.Age)</li>
+}
+</ul>

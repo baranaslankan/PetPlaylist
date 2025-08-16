@@ -21,10 +21,20 @@ namespace PetPlaylist.Controllers
         public record CreateBehaviorDto(string BehaviorName, string Description);
         public record AssignBehaviorToPetDto(int PetId, int BehaviorId, string Notes = "");
 
-        /// <summary>
-        /// Gets all available behaviors.
-        /// </summary>
-        /// <returns>200 OK - List of behaviors</returns>
+    /// <summary>
+    /// Gets all available behaviors.
+    /// </summary>
+    /// <remarks>
+    /// <b>Example Request:</b>
+    /// <code>GET /api/Behaviors</code>
+    /// <b>Example Response:</b>
+    /// <code>
+    /// [
+    ///   { "behaviorId": 1, "behaviorName": "Calm", "description": "Relaxed and quiet" },
+    ///   ...
+    /// ]
+    /// </code>
+    /// </remarks>
         [HttpGet]
         public async Task<IActionResult> GetBehaviors()
         {
@@ -35,11 +45,21 @@ namespace PetPlaylist.Controllers
             return Ok(behaviors);
         }
 
-        /// <summary>
-        /// Creates a new behavior.
-        /// </summary>
-        /// <param name="dto">Behavior data</param>
-        /// <returns>201 Created</returns>
+    /// <summary>
+    /// Creates a new behavior.
+    /// </summary>
+    /// <remarks>
+    /// <b>Example Request:</b>
+    /// <code>POST /api/Behaviors</code>
+    /// <b>Example Body:</b>
+    /// <code>
+    /// { "behaviorName": "Calm", "description": "Relaxed and quiet" }
+    /// </code>
+    /// <b>Example Response:</b>
+    /// <code>
+    /// { "behaviorId": 1, "behaviorName": "Calm", "description": "Relaxed and quiet" }
+    /// </code>
+    /// </remarks>
         [HttpPost]
         public async Task<IActionResult> CreateBehavior(CreateBehaviorDto dto)
         {

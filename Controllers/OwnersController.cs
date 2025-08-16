@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using PetPlaylist.Data;
 using PetPlaylist.DTOs;
@@ -17,9 +18,7 @@ namespace PetPlaylist.Controllers
             _context = context;
         }
 
-        /// <summary>
-        /// Returns all owners.
-        /// </summary>
+    /// Returns all owners.
         [HttpGet]
         public async Task<ActionResult<IEnumerable<OwnerDTO>>> GetOwners()
         {
@@ -35,9 +34,7 @@ namespace PetPlaylist.Controllers
                 .ToListAsync();
         }
 
-        /// <summary>
-        /// Returns a specific owner by ID.
-        /// </summary>
+    /// Returns a specific owner by ID.
         [HttpGet("{id}")]
         public async Task<ActionResult<OwnerDTO>> GetOwner(int id)
         {
@@ -54,9 +51,7 @@ namespace PetPlaylist.Controllers
             };
         }
 
-        /// <summary>
-        /// Returns a specific owner and all their pets.
-        /// </summary>
+    /// Returns a specific owner and all their pets.
         [HttpGet("{id}/with-pets")]
         public async Task<ActionResult<OwnerWithPetsDTO>> GetOwnerWithPets(int id)
         {
@@ -85,10 +80,9 @@ namespace PetPlaylist.Controllers
             };
         }
 
-        /// <summary>
-        /// Creates a new owner.
-        /// </summary>
+    /// Creates a new owner.
         [HttpPost]
+        [Authorize(Policy = "AdminOnly")]
         public async Task<ActionResult<OwnerDTO>> CreateOwner(OwnerDTO dto)
         {
             var owner = new Owner
@@ -104,14 +98,18 @@ namespace PetPlaylist.Controllers
             return CreatedAtAction(nameof(GetOwner), new { id = owner.Id }, dto);
         }
 
-        /// <summary>
-        /// Updates an existing owner.
-        /// </summary>
+    /// Updates an existing owner.
         [HttpPut("{id}")]
+        [Authorize(Policy = "OwnerOnly")]
         public async Task<IActionResult> UpdateOwner(int id, OwnerDTO dto)
         {
             var owner = await _context.Owners.FindAsync(id);
             if (owner == null) return NotFound();
+
+            // Only allow if the logged-in user matches the owner email
+            var userEmail = User.Identity?.Name;
+            if (User.IsInRole("Owner") && owner.Email != userEmail)
+                return Forbid();
 
             owner.FullName = dto.FullName;
             owner.Email = dto.Email;
@@ -120,10 +118,9 @@ namespace PetPlaylist.Controllers
             return NoContent();
         }
 
-        /// <summary>
-        /// Deletes an owner by ID.
-        /// </summary>
+    /// Deletes an owner by ID.
         [HttpDelete("{id}")]
+        [Authorize(Policy = "AdminOnly")]
         public async Task<IActionResult> DeleteOwner(int id)
         {
             var owner = await _context.Owners.FindAsync(id);

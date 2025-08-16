@@ -17,9 +17,7 @@ namespace PetPlaylist.Controllers
             _context = context;
         }
 
-        /// <summary>
-        /// Returns all pets.
-        /// </summary>
+    /// Returns all pets.
         [HttpGet]
         public async Task<ActionResult<IEnumerable<PetDTO>>> GetPets()
         {
@@ -36,9 +34,7 @@ namespace PetPlaylist.Controllers
                 .ToListAsync();
         }
 
-        /// <summary>
-        /// Returns a specific pet by ID.
-        /// </summary>
+    /// Returns a specific pet by ID.
         [HttpGet("{id}")]
         public async Task<ActionResult<PetDTO>> GetPet(int id)
         {
@@ -56,9 +52,7 @@ namespace PetPlaylist.Controllers
             };
         }
 
-        /// <summary>
-        /// Creates a new pet.
-        /// </summary>
+    /// Creates a new pet.
         [HttpPost]
         public async Task<ActionResult<PetDTO>> CreatePet(PetDTO dto)
         {
@@ -78,14 +72,19 @@ namespace PetPlaylist.Controllers
             return CreatedAtAction(nameof(GetPet), new { id = pet.Id }, dto);
         }
 
-        /// <summary>
-        /// Updates an existing pet.
-        /// </summary>
+    /// Updates an existing pet.
         [HttpPut("{id}")]
+        [Authorize(Policy = "OwnerOnly")]
         public async Task<IActionResult> UpdatePet(int id, PetDTO dto)
         {
             var pet = await _context.Pets.FindAsync(id);
             if (pet == null) return NotFound();
+
+            // Only allow if the logged-in user matches the pet's owner
+            var owner = await _context.Owners.FindAsync(pet.OwnerId);
+            var userEmail = User.Identity?.Name;
+            if (User.IsInRole("Owner") && (owner == null || owner.Email != userEmail))
+                return Forbid();
 
             pet.Name = dto.Name;
             pet.Type = dto.Type;
@@ -97,9 +96,7 @@ namespace PetPlaylist.Controllers
             return NoContent();
         }
 
-        /// <summary>
-        /// Deletes a pet by ID.
-        /// </summary>
+    /// Deletes a pet by ID.
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePet(int id)
         {
@@ -112,9 +109,7 @@ namespace PetPlaylist.Controllers
             return NoContent();
         }
 
-        /// <summary>
-        /// Returns all pets owned by a specific owner.
-        /// </summary>
+    /// Returns all pets owned by a specific owner.
         [HttpGet("/api/owners/{ownerId}/pets")]
         public async Task<ActionResult<IEnumerable<PetDTO>>> GetPetsByOwner(int ownerId)
         {

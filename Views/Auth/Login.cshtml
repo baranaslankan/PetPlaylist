@@ -1,0 +1,14 @@
+@{
+    ViewData["Title"] = "Login";
+}
+<h2>Login</h2>
+<form method="post">
+    <label>Email: <input type="text" name="email" /></label><br />
+    <label>Role:
+        <select name="role">
+            <option value="Admin">Admin</option>
+            <option value="Owner">Owner</option>
+        </select>
+    </label><br />
+    <button type="submit">Login</button>
+</form>
